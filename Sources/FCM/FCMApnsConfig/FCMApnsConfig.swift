@@ -1,6 +1,6 @@
 import Foundation
 
-final public class FCMApnsConfig<P>: Codable where P: FCMApnsPayloadProtocol {
+public struct FCMApnsConfig<P>: Codable where P: FCMApnsPayloadProtocol {
     /// HTTP request headers defined in Apple Push Notification Service.
     /// Refer to APNs request headers for supported headers, e.g. "apns-priority": "10".
     public var headers: [String: String]
@@ -21,7 +21,7 @@ final public class FCMApnsConfig<P>: Codable where P: FCMApnsPayloadProtocol {
 
 extension FCMApnsConfig where P == FCMApnsPayload {
     /// Use this if you need only aps object
-    public convenience init(headers: [String: String]? = nil, aps: FCMApnsApsObject? = nil) {
+    public init(headers: [String: String]? = nil, aps: FCMApnsApsObject? = nil) {
         if let aps = aps {
             self.init(headers: headers, payload: FCMApnsPayload(aps: aps))
         } else {
